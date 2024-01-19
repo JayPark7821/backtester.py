@@ -1,0 +1,7 @@
+sqlalchemy
+databases[aiosqlite]
+python-dotenv
+pydantic
+pydantic-settings
+
+

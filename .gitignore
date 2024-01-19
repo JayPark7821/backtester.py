@@ -1,0 +1,7 @@
+.DS_store
+*.pyc
+__pycache__
+.env
+*.db
+.venv
+*.png
