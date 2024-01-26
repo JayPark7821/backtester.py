@@ -1,5 +1,7 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
+
 import datetime
+
 
 class OHLCV(BaseModel):
     open: float
@@ -8,3 +10,7 @@ class OHLCV(BaseModel):
     close: float
     volume: float
     timestamp: datetime.datetime
+
+
+class BTC4H(OHLCV):
+    model_config = ConfigDict(from_attributes=True)

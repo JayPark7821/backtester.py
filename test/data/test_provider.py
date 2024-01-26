@@ -1,4 +1,7 @@
 from data.provider import DataProvider
-def test_get_date():
+import pytest
+
+async def test_get_date():
     provider = DataProvider()
-    provider.get_data("2021-01-01", "2021-01-02")
+    result = await provider.get_data("2020-01-01", "2050-01-02")
+    print(result)

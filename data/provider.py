@@ -1,21 +1,13 @@
 import databases
 import sqlalchemy
-from abc import *
+import pandas as pd
 
-
-class Provider(ABC):
-
-    @abstractmethod
-    def get_data(self, start: str, end: str):
-        pass
-
-
-class DataProvider(Provider):
+class DataProvider:
     def __init__(self):
         self.metadata = sqlalchemy.MetaData()
         self.database_url = "sqlite:///test.db"
-        self.ohlcv_table = sqlalchemy.Table(
-            "ohlcv",
+        self.btc4h_table = sqlalchemy.Table(
+            "btc4h",
             self.metadata,
             sqlalchemy.Column("id", sqlalchemy.Float, primary_key=True),
             sqlalchemy.Column("coin", sqlalchemy.String, unique=True),
@@ -27,14 +19,21 @@ class DataProvider(Provider):
             sqlalchemy.Column("date", sqlalchemy.DateTime),
         )
         self.engine = sqlalchemy.create_engine(
-           self.database_url , connect_args={"check_same_thread": False}
+            self.database_url, connect_args={"check_same_thread": False}
         )
 
         self.metadata.create_all(self.engine)
-        database = databases.Database(
+        self.database = databases.Database(
             self.database_url, force_rollback=False
-        ).connect()
+        )
+        self.database.connect()
 
+    async def get_data(self, start: str, end: str):
 
-    def get_data(self, start: str, end: str):
-          pass
+        query = self.btc4h_table.select().where(
+            self.btc4h_table.c.date.between(start, end)
+        )
+        print(query)
+        results = await self.database.fetch_all(query)
+
+        pd.DataFrame(results)
