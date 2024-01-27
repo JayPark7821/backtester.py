@@ -1,7 +1,7 @@
 import logging
 from logging.config import dictConfig
 
-from fastapi.config import DevConfig, config
+from fastapi_prac.config import DevConfig, config
 
 
 def obfuscated(email: str, obfuscated_length: int) -> str:
@@ -24,7 +24,7 @@ class EmailObfuscationFilter(logging.Filter):
 
 handlers = ["default", "rotating_file"]
 if isinstance(config, DevConfig):
-    handlers = ["default", "rotating_file", "cloudwatch"]
+    handlers = ["default", "rotating_file"]
 
 
 def configure_logging() -> None:
@@ -66,7 +66,7 @@ def configure_logging() -> None:
                     "class": "logging.handlers.RotatingFileHandler",
                     "level": "DEBUG",
                     "formatter": "file",
-                    "filename": "fastapi.log",
+                    "filename": "fastapi_prac.log",
                     "maxBytes": 1024 * 1024 * 5,  # 5mb
                     "encoding": "utf-8",
                     "backupCount": 2,
@@ -79,7 +79,7 @@ def configure_logging() -> None:
                     "level": "INFO",
                     "propagate": False,
                 },
-                "fastapi": {  # root.fastapi.router.post etc
+                "fastapi_prac": {  # root.fastapi_prac.router.post etc
                     "handlers": handlers,
                     "level": "DEBUG" if isinstance(config, DevConfig) else "INFO",
                     "propagate": False,

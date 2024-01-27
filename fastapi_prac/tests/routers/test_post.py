@@ -69,7 +69,7 @@ async def test_create_post_missing_data(async_client: AsyncClient, logged_in_tok
 
 @pytest.mark.anyio
 async def test_create_post_expired_token(async_client: AsyncClient, registered_user: dict, mocker):
-    mocker.patch("fastapi.security.access_token_expire_minutes", return_value=-1)
+    mocker.patch("fastapi_prac.security.access_token_expire_minutes", return_value=-1)
     token = security.create_access_token(registered_user["email"])
     response = await async_client.post(
         "/post",

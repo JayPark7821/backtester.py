@@ -5,11 +5,11 @@ from typing import Annotated
 import sqlalchemy
 
 from fastapi import APIRouter, HTTPException, Depends
-from fastapi.database import database, post_table, comment_table, like_table
-from fastapi.models.post import UserPost, UserPostIn, CommentIn, Comment, UserPostWithComments, PostLike, PostLikeIn, \
+from fastapi_prac.database import database, post_table, comment_table, like_table
+from fastapi_prac.models.post import UserPost, UserPostIn, CommentIn, Comment, UserPostWithComments, PostLike, PostLikeIn, \
     UserPostWithLikes
-from fastapi.models.user import User
-from fastapi.security import get_current_user
+from fastapi_prac.models.user import User
+from fastapi_prac.security import get_current_user
 
 router = APIRouter()
 

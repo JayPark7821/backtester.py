@@ -1,7 +1,7 @@
 import databases
 import sqlalchemy
 
-from fastapi.config import config
+from fastapi_prac.config import config
 
 metadata = sqlalchemy.MetaData()
 

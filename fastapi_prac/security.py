@@ -6,8 +6,8 @@ from jose import jwt, ExpiredSignatureError, JWTError
 from passlib.context import CryptContext
 
 from fastapi import Depends, HTTPException, status
-from fastapi.config import config
-from fastapi.database import database, user_table
+from fastapi_prac.config import config
+from fastapi_prac.database import database, user_table
 from fastapi.security import OAuth2PasswordBearer
 
 logger = logging.getLogger(__name__)

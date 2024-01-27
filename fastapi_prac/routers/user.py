@@ -1,8 +1,8 @@
 from fastapi import APIRouter, HTTPException, status
 
-from fastapi.database import database, user_table
-from fastapi.models.user import UserIn
-from fastapi.security import get_user, get_password_hash, authenticate_user, create_access_token
+from fastapi_prac.database import database, user_table
+from fastapi_prac.models.user import UserIn
+from fastapi_prac.security import get_user, get_password_hash, authenticate_user, create_access_token
 
 router = APIRouter()
 
