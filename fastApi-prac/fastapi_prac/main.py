@@ -2,7 +2,6 @@ import logging
 from contextlib import asynccontextmanager
 
 from asgi_correlation_id import CorrelationIdMiddleware
-from fastapi.exception_handlers import http_exception_handler
 
 from fastapi import FastAPI, HTTPException
 from fastapi_prac.database import database
